@@ -1,4 +1,5 @@
 import { type InputHTMLAttributes } from 'react'
+import { Text } from './Text'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
@@ -8,9 +9,9 @@ export function Input({ label, id, className = '', ...props }: InputProps) {
   return (
     <div>
       {label && (
-        <label htmlFor={id} className="block text-sm font-mono font-bold uppercase mb-1">
+        <Text variant="subheader" as="label" htmlFor={id} className="block mb-1">
           {label}
-        </label>
+        </Text>
       )}
       <input
         id={id}

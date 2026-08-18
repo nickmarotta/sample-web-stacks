@@ -1,6 +1,6 @@
 import { useRouter } from '@tanstack/react-router'
 import { setActiveFn } from '~/server/features/trainer/trainer-controller'
-import { Button, Card, TypeBadge } from '~/client/ui'
+import { Button, Card, TypeBadge, Text } from '~/client/ui'
 
 interface Pokemon {
   id: number
@@ -28,14 +28,14 @@ export function CollectionPage({ collection, trainer }: CollectionPageProps) {
   if (collection.length === 0) {
     return (
       <div className="space-y-4 font-mono">
-        <h1 className="text-2xl font-bold uppercase">Your Collection</h1>
+        <Text variant="pageTitle">Your Collection</Text>
         <Card>
-          <p className="text-sm">
+          <Text variant="body">
             You haven't caught any Pokémon yet.{' '}
-            <a href="/" className="underline hover:text-gray-600">
+            <Text variant="link" as="a" href="/">
               Go on an Encounter!
-            </a>
-          </p>
+            </Text>
+          </Text>
         </Card>
       </div>
     )
@@ -43,8 +43,8 @@ export function CollectionPage({ collection, trainer }: CollectionPageProps) {
 
   return (
     <div className="space-y-6 font-mono">
-      <h1 className="text-2xl font-bold uppercase">Your Collection</h1>
-      <p className="text-xs font-bold">{collection.length} Pokémon caught</p>
+      <Text variant="pageTitle">Your Collection</Text>
+      <Text variant="bodySmall" className="font-bold">{collection.length} Pokémon caught</Text>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
         {collection.map((pokemon) => {
           const isActive = trainer.activePokemonId === pokemon.id
@@ -57,18 +57,18 @@ export function CollectionPage({ collection, trainer }: CollectionPageProps) {
                 className="w-16 h-16 mx-auto"
                 style={{ imageRendering: 'pixelated' }}
               />
-              <p className="text-center font-bold uppercase text-xs mt-2">
+              <Text variant="label" className="text-center mt-2">
                 {pokemon.nickname ?? pokemon.species.name}
-              </p>
+              </Text>
               <div className="flex gap-1 justify-center flex-wrap mt-2">
                 {types.map((t) => (
                   <TypeBadge key={t} type={t} />
                 ))}
               </div>
               {isActive ? (
-                <p className="text-[10px] text-center text-red-700 font-bold mt-2">
+                <Text variant="label" className="text-[10px] text-center text-red-700 mt-2">
                   ACTIVE
-                </p>
+                </Text>
               ) : (
                 <Button
                   variant="menu"

@@ -1,6 +1,6 @@
 import { useRouter } from '@tanstack/react-router'
 import { registerFn } from '~/server/features/auth/auth-controller'
-import { Button, Input, Card } from '~/client/ui'
+import { Button, Input, Card, Text } from '~/client/ui'
 import { useState } from 'react'
 
 export function RegisterPage() {
@@ -28,7 +28,7 @@ export function RegisterPage() {
 
   return (
     <div className="max-w-sm mx-auto space-y-6 font-mono">
-      <h1 className="text-2xl font-bold uppercase">Create Account</h1>
+      <Text variant="pageTitle">Create Account</Text>
       <Card>
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
@@ -49,18 +49,18 @@ export function RegisterPage() {
             minLength={6}
             placeholder="••••••"
           />
-          {error && <p className="text-sm text-red-700 font-bold">{error}</p>}
+          {error && <Text variant="error">{error}</Text>}
           <Button variant="primary" type="submit" disabled={loading} className="w-full">
             {loading ? 'Creating…' : 'Register'}
           </Button>
         </form>
       </Card>
-      <p className="text-sm font-mono">
+      <Text variant="body">
         Already have an account?{' '}
-        <a href="/auth/login" className="underline hover:text-gray-600">
+        <Text variant="link" as="a" href="/auth/login">
           Login
-        </a>
-      </p>
+        </Text>
+      </Text>
     </div>
   )
 }

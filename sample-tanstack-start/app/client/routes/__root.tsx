@@ -1,4 +1,5 @@
 import { createRootRoute, HeadContent, Link, Outlet, Scripts } from '@tanstack/react-router'
+import { Text } from '~/client/ui'
 import '../styles.css'
 
 export const Route = createRootRoute({
@@ -20,28 +21,19 @@ function RootComponent() {
       </head>
       <body className="min-h-screen bg-gray-50 text-gray-900 font-mono">
         <nav className="bg-white border-b-[3px] border-gray-900 px-4 py-3 flex gap-4 items-center">
-          <Link to="/" className="font-bold text-lg text-red-600 uppercase">
+          <Text variant="navLink" as={Link} to="/" className="text-lg text-red-600 hover:text-red-600">
             PokéStart
-          </Link>
-          <Link
-            to="/collection"
-            className="text-sm font-bold uppercase text-gray-600 hover:text-gray-900"
-          >
+          </Text>
+          <Text variant="navLink" as={Link} to="/collection">
             Collection
-          </Link>
+          </Text>
           <div className="ml-auto flex gap-3">
-            <Link
-              to="/auth/login"
-              className="text-sm font-bold uppercase text-gray-600 hover:text-gray-900"
-            >
+            <Text variant="navLink" as={Link} to="/auth/login">
               Login
-            </Link>
-            <Link
-              to="/auth/register"
-              className="text-sm font-bold uppercase text-gray-600 hover:text-gray-900"
-            >
+            </Text>
+            <Text variant="navLink" as={Link} to="/auth/register">
               Register
-            </Link>
+            </Text>
           </div>
         </nav>
 

@@ -1,7 +1,7 @@
 import { useRouter } from '@tanstack/react-router'
 import { logoutFn } from '~/server/features/auth/auth-controller'
 import { startEncounterFn } from '~/server/features/battle/battle-controller'
-import { Button, Card } from '~/client/ui'
+import { Button, Card, Text } from '~/client/ui'
 
 interface HomePageProps {
   trainer: {
@@ -19,11 +19,11 @@ export function HomePage({ trainer }: HomePageProps) {
     <div className="space-y-6 font-mono">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold uppercase">Welcome, {trainer.username}!</h1>
+          <Text variant="pageTitle">Welcome, {trainer.username}!</Text>
           {starterMode && (
-            <p className="text-sm text-yellow-700 font-bold mt-1">
+            <Text variant="warning" className="mt-1">
               No active Pokémon — catch one to start!
-            </p>
+            </Text>
           )}
         </div>
         <form
@@ -38,14 +38,14 @@ export function HomePage({ trainer }: HomePageProps) {
       </div>
 
       <Card>
-        <h2 className="text-sm font-bold uppercase mb-2">
+        <Text variant="subheader" className="mb-2">
           {starterMode ? 'Starter Encounter' : 'Go on an Encounter'}
-        </h2>
-        <p className="text-xs text-gray-600 mb-4">
+        </Text>
+        <Text variant="bodySmall" className="text-gray-600 mb-4">
           {starterMode
             ? 'Encounter a Wild Pokémon and catch it to begin your journey.'
             : 'Encounter a random Wild Pokémon and battle it with your Active Pokémon.'}
-        </p>
+        </Text>
         <form
           onSubmit={async (e) => {
             e.preventDefault()
@@ -63,11 +63,11 @@ export function HomePage({ trainer }: HomePageProps) {
       </Card>
 
       <Card>
-        <h2 className="text-sm font-bold uppercase mb-2">Active Pokémon</h2>
+        <Text variant="subheader" className="mb-2">Active Pokémon</Text>
         {trainer.activePokemonId ? (
-          <p className="text-xs">Pokémon #{trainer.activePokemonId} is ready to battle.</p>
+          <Text variant="bodySmall">Pokémon #{trainer.activePokemonId} is ready to battle.</Text>
         ) : (
-          <p className="text-xs text-gray-500">None — catch your first Pokémon!</p>
+          <Text variant="caption">None — catch your first Pokémon!</Text>
         )}
       </Card>
     </div>

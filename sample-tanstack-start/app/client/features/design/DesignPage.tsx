@@ -1,17 +1,17 @@
-import { Button, Input, Card, HpBar, MessageBox, ActionMenu, TypeBadge } from '~/client/ui'
+import { Button, Input, Card, HpBar, MessageBox, ActionMenu, TypeBadge, Text } from '~/client/ui'
 
 export function DesignPage() {
   return (
     <div className="space-y-12 max-w-4xl mx-auto py-8 font-mono">
       <div>
-        <h1 className="text-3xl font-bold mb-2">Design System</h1>
-        <p className="text-gray-500 text-sm">Retro-inspired primitives based on Gen 1 Pokémon games.</p>
+        <Text variant="pageTitle" className="mb-2">Design System</Text>
+        <Text variant="caption">Retro-inspired primitives based on Gen 1 Pokémon games.</Text>
       </div>
 
       {/* Buttons */}
       <section className="space-y-4">
-        <h2 className="text-xl font-bold border-b-4 border-gray-900 pb-2">Buttons</h2>
-        <p className="text-xs text-gray-500">Menu-style buttons with thick borders and uppercase text.</p>
+        <Text variant="sectionHeader">Buttons</Text>
+        <Text variant="caption">Menu-style buttons with thick borders and uppercase text.</Text>
         <div className="flex flex-wrap gap-3">
           <Button>Fight</Button>
           <Button>Pokéball</Button>
@@ -20,7 +20,7 @@ export function DesignPage() {
           <Button disabled>Disabled</Button>
         </div>
 
-        <p className="text-xs text-gray-500 mt-4">With cursor indicator (like the original menu):</p>
+        <Text variant="caption" className="mt-4">With cursor indicator (like the original menu):</Text>
         <Card className="inline-flex flex-col gap-2 p-4">
           <Button variant="menu" active>Fight</Button>
           <Button variant="menu">Pokéball</Button>
@@ -30,7 +30,7 @@ export function DesignPage() {
 
       {/* Inputs */}
       <section className="space-y-4">
-        <h2 className="text-xl font-bold border-b-4 border-gray-900 pb-2">Inputs</h2>
+        <Text variant="sectionHeader">Inputs</Text>
         <div className="max-w-sm space-y-3">
           <Input id="demo-name" label="Trainer Name" placeholder="RED" />
           <Input id="demo-pass" label="Password" type="password" placeholder="••••••" />
@@ -39,33 +39,33 @@ export function DesignPage() {
 
       {/* Cards */}
       <section className="space-y-4">
-        <h2 className="text-xl font-bold border-b-4 border-gray-900 pb-2">Cards</h2>
+        <Text variant="sectionHeader">Cards</Text>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Card>
-            <h3 className="text-sm font-bold uppercase mb-2">Default Card</h3>
-            <p className="text-xs text-gray-600">Used for dashboard sections and general content.</p>
+            <Text variant="subheader" className="mb-2">Default Card</Text>
+            <Text variant="bodySmall" className="text-gray-600">Used for dashboard sections and general content.</Text>
           </Card>
           <Card variant="active">
-            <h3 className="text-sm font-bold uppercase mb-2">Active Pokémon</h3>
-            <p className="text-xs text-red-700">Highlighted state for selected items.</p>
+            <Text variant="subheader" className="mb-2">Active Pokémon</Text>
+            <Text variant="bodySmall" className="text-red-700">Highlighted state for selected items.</Text>
           </Card>
         </div>
       </section>
 
       {/* HP Bars */}
       <section className="space-y-4">
-        <h2 className="text-xl font-bold border-b-4 border-gray-900 pb-2">HP Bars</h2>
+        <Text variant="sectionHeader">HP Bars</Text>
         <div className="max-w-sm space-y-4">
           <div>
-            <p className="text-xs font-bold uppercase mb-1">Full HP</p>
+            <Text variant="label" className="mb-1">Full HP</Text>
             <HpBar current={75} max={75} />
           </div>
           <div>
-            <p className="text-xs font-bold uppercase mb-1">Half HP</p>
+            <Text variant="label" className="mb-1">Half HP</Text>
             <HpBar current={34} max={75} />
           </div>
           <div>
-            <p className="text-xs font-bold uppercase mb-1">Low HP</p>
+            <Text variant="label" className="mb-1">Low HP</Text>
             <HpBar current={11} max={75} />
           </div>
         </div>
@@ -73,10 +73,10 @@ export function DesignPage() {
 
       {/* Battle HP Box */}
       <section className="space-y-4">
-        <h2 className="text-xl font-bold border-b-4 border-gray-900 pb-2">Battle HP Box</h2>
+        <Text variant="sectionHeader">Battle HP Box</Text>
         <Card className="max-w-[240px] p-4">
-          <div className="text-base font-bold uppercase tracking-wide">PIKACHU</div>
-          <div className="text-xs font-bold mt-0.5">Lv25</div>
+          <Text variant="subheader" as="div" className="text-base tracking-wide">PIKACHU</Text>
+          <Text variant="label" as="div" className="mt-0.5">Lv25</Text>
           <div className="mt-2">
             <HpBar current={54} max={75} showNumbers />
           </div>
@@ -85,14 +85,14 @@ export function DesignPage() {
 
       {/* Message Box */}
       <section className="space-y-4">
-        <h2 className="text-xl font-bold border-b-4 border-gray-900 pb-2">Message Box</h2>
+        <Text variant="sectionHeader">Message Box</Text>
         <MessageBox className="max-w-md">Wild RATTATA appeared!</MessageBox>
         <MessageBox className="max-w-md">Gotcha! RATTATA was caught!</MessageBox>
       </section>
 
       {/* Action Menu */}
       <section className="space-y-4">
-        <h2 className="text-xl font-bold border-b-4 border-gray-900 pb-2">Action Menu</h2>
+        <Text variant="sectionHeader">Action Menu</Text>
         <div className="border-[6px] border-gray-900 rounded-lg overflow-hidden max-w-lg">
           <ActionMenu message="What will you do?">
             <Button variant="menu" active>Fight</Button>
@@ -105,7 +105,7 @@ export function DesignPage() {
 
       {/* Badges & Type Tags */}
       <section className="space-y-4">
-        <h2 className="text-xl font-bold border-b-4 border-gray-900 pb-2">Badges & Types</h2>
+        <Text variant="sectionHeader">Badges & Types</Text>
         <div className="flex flex-wrap gap-2">
           <TypeBadge type="water" />
           <TypeBadge type="fire" />
@@ -120,26 +120,31 @@ export function DesignPage() {
 
       {/* Typography */}
       <section className="space-y-4">
-        <h2 className="text-xl font-bold border-b-4 border-gray-900 pb-2">Typography</h2>
+        <Text variant="sectionHeader">Typography</Text>
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold uppercase">Page Title</h1>
-          <h2 className="text-lg font-bold uppercase">Section Header</h2>
-          <p className="text-sm">Body text — used for descriptions and battle messages.</p>
-          <p className="text-sm text-red-700 font-bold">Error: Invalid credentials</p>
-          <p className="text-sm text-yellow-700 font-bold">Warning: No active Pokémon!</p>
-          <a href="#" className="text-sm underline hover:text-gray-600">Link style</a>
+          <Text variant="pageTitle" as="p">Page Title</Text>
+          <Text variant="sectionHeader" as="p">Section Header</Text>
+          <Text variant="subheader" as="p">Subheader</Text>
+          <Text variant="label">Label</Text>
+          <Text variant="body">Body text — used for descriptions and battle messages.</Text>
+          <Text variant="bodySmall">Body small — dense supporting copy.</Text>
+          <Text variant="caption">Caption — secondary/help text.</Text>
+          <Text variant="error">Error: Invalid credentials</Text>
+          <Text variant="warning">Warning: No active Pokémon!</Text>
+          <Text variant="link" as="a" href="#" className="block w-fit">Link style</Text>
+          <Text variant="navLink" as="a" href="#" className="block w-fit">Nav link</Text>
         </div>
       </section>
 
       {/* Full Battle Screen Preview */}
       <section className="space-y-4">
-        <h2 className="text-xl font-bold border-b-4 border-gray-900 pb-2">Battle Screen (composite)</h2>
+        <Text variant="sectionHeader">Battle Screen (composite)</Text>
         <div className="bg-white border-[6px] border-gray-900 rounded-lg shadow-[6px_6px_0px_0px_rgba(0,0,0,0.8)] overflow-hidden">
           <div className="bg-gradient-to-b from-gray-100 to-green-100 h-64 flex flex-col justify-between p-6">
             <div className="flex justify-between items-start">
               <Card className="p-3 min-w-[180px]">
-                <div className="text-sm font-bold uppercase">SQUIRTLE</div>
-                <div className="text-[10px] font-bold">:L5</div>
+                <Text variant="subheader" as="div">SQUIRTLE</Text>
+                <Text variant="label" as="div" className="text-[10px]">:L5</Text>
                 <div className="mt-1">
                   <HpBar current={30} max={30} />
                 </div>
@@ -153,8 +158,8 @@ export function DesignPage() {
                 <div className="w-20 h-20 bg-gray-300 border-2 border-gray-400 rounded flex items-center justify-center text-[9px] text-gray-500 uppercase">back</div>
               </div>
               <Card className="p-3 min-w-[180px]">
-                <div className="text-sm font-bold uppercase">CHARMANDER</div>
-                <div className="text-[10px] font-bold">:L5</div>
+                <Text variant="subheader" as="div">CHARMANDER</Text>
+                <Text variant="label" as="div" className="text-[10px]">:L5</Text>
                 <div className="mt-1">
                   <HpBar current={19} max={19} showNumbers />
                 </div>

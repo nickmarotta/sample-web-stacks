@@ -1,6 +1,6 @@
 import { useRouter } from '@tanstack/react-router'
 import { fetchBattle, attackFn, catchFn, fleeFn } from '~/server/features/battle/battle-controller'
-import { Button, Card, HpBar, ActionMenu, MessageBox } from '~/client/ui'
+import { Button, Card, HpBar, ActionMenu, MessageBox, Text } from '~/client/ui'
 import { useState } from 'react'
 
 interface BattlePageProps {
@@ -77,8 +77,8 @@ export function BattlePage({ initialData }: BattlePageProps) {
           {/* Top row: Enemy HP box | Enemy sprite */}
           <div className="flex justify-between items-start">
             <Card className="p-3 min-w-[200px]">
-              <div className="text-sm font-bold uppercase">{battle.species.name}</div>
-              <div className="text-[10px] font-bold">:L{Math.floor(battle.wildMaxHp / 10)}</div>
+              <Text variant="subheader" as="div">{battle.species.name}</Text>
+              <Text variant="label" as="div" className="text-[10px]">:L{Math.floor(battle.wildMaxHp / 10)}</Text>
               <div className="mt-1">
                 <HpBar current={battle.wildCurrentHp} max={battle.wildMaxHp} />
               </div>
@@ -106,10 +106,10 @@ export function BattlePage({ initialData }: BattlePageProps) {
                   />
                 </div>
                 <Card className="p-3 min-w-[200px]">
-                  <div className="text-sm font-bold uppercase">
+                  <Text variant="subheader" as="div">
                     {activePokemon?.nickname || activePokemon?.species.name || 'Your Pokémon'}
-                  </div>
-                  <div className="text-[10px] font-bold">:L{Math.floor(battle.activeMaxHp / 10)}</div>
+                  </Text>
+                  <Text variant="label" as="div" className="text-[10px]">:L{Math.floor(battle.activeMaxHp / 10)}</Text>
                   <div className="mt-1">
                     <HpBar current={battle.activeCurrentHp} max={battle.activeMaxHp} showNumbers />
                   </div>
@@ -117,8 +117,8 @@ export function BattlePage({ initialData }: BattlePageProps) {
               </>
             ) : (
               <Card className="p-3 border-yellow-700 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.5)] bg-yellow-50">
-                <div className="text-xs font-bold uppercase text-yellow-800">Starter Encounter</div>
-                <div className="text-[10px] mt-1 text-yellow-700">Catch your first Pokémon!</div>
+                <Text variant="label" as="div" className="text-yellow-800">Starter Encounter</Text>
+                <Text variant="bodySmall" as="div" className="text-[10px] mt-1 text-yellow-700">Catch your first Pokémon!</Text>
               </Card>
             )}
           </div>

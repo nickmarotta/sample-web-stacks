@@ -1,5 +1,5 @@
 import { db } from '~/server/db'
-import { pokemonSpecies, type PokemonSpecies, type PokemonSpeciesInsert } from '~/server/db/schema'
+import { pokemonSpecies, type PokemonSpecies } from '~/server/db/schema'
 import { eq } from 'drizzle-orm'
 
 export async function findSpeciesById(id: number): Promise<PokemonSpecies | undefined> {
@@ -8,7 +8,7 @@ export async function findSpeciesById(id: number): Promise<PokemonSpecies | unde
   })
 }
 
-export async function upsertSpecies(species: PokemonSpeciesInsert): Promise<PokemonSpeciesInsert> {
+export async function upsertSpecies(species: PokemonSpecies): Promise<PokemonSpecies> {
   await db.insert(pokemonSpecies).values(species).onConflictDoNothing()
   return species
 }

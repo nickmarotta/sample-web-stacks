@@ -1,6 +1,6 @@
 import { useRouter } from '@tanstack/react-router'
 import { loginFn } from '~/server/features/auth/auth-controller'
-import { Button, Input, Card } from '~/client/ui'
+import { Button, Input, Card, Text } from '~/client/ui'
 import { useState } from 'react'
 
 export function LoginPage() {
@@ -29,7 +29,7 @@ export function LoginPage() {
 
   return (
     <div className="max-w-sm mx-auto space-y-6 font-mono">
-      <h1 className="text-2xl font-bold uppercase">Login</h1>
+      <Text variant="pageTitle">Login</Text>
       <Card>
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
@@ -49,18 +49,18 @@ export function LoginPage() {
             required
             placeholder="••••••"
           />
-          {error && <p className="text-sm text-red-700 font-bold">{error}</p>}
+          {error && <Text variant="error">{error}</Text>}
           <Button variant="primary" type="submit" disabled={loading} className="w-full">
             {loading ? 'Logging in…' : 'Login'}
           </Button>
         </form>
       </Card>
-      <p className="text-sm font-mono">
+      <Text variant="body">
         No account?{' '}
-        <a href="/auth/register" className="underline hover:text-gray-600">
+        <Text variant="link" as="a" href="/auth/register">
           Register
-        </a>
-      </p>
+        </Text>
+      </Text>
     </div>
   )
 }
