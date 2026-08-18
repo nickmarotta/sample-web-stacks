@@ -1,0 +1,15 @@
+node_modules/
+.output/
+.tanstack/
+.vite/
+
+.claude/
+
+*.db
+*.db-shm
+*.db-wal
+
+*.local
+.env
+
+app.config.timestamp_*.js
