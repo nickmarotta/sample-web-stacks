@@ -1,13 +1,20 @@
 import { createServerFn } from '@tanstack/react-start'
 import { redirect } from '@tanstack/react-router'
 import { getCurrentTrainer } from '../auth/auth-service'
-import { getTrainerCollection, setActivePokemon } from './trainer-service'
+import { getCollectionCount, getTrainerCollection, setActivePokemon } from './trainer-service'
 
 export const fetchCollectionFn = createServerFn({ method: 'GET' }).handler(async () => {
   const trainer = await getCurrentTrainer()
   if (!trainer) throw redirect({ to: '/auth/login' })
   const collection = await getTrainerCollection(trainer.id)
   return { collection, trainer }
+})
+
+export const fetchHomeFn = createServerFn({ method: 'GET' }).handler(async () => {
+  const trainer = await getCurrentTrainer()
+  if (!trainer) throw redirect({ to: '/auth/login' })
+  const collectionCount = await getCollectionCount(trainer.id)
+  return { trainer, collectionCount }
 })
 
 export const setActiveFn = createServerFn({ method: 'POST' })

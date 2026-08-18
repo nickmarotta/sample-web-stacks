@@ -1,5 +1,4 @@
 import { createServerFn } from '@tanstack/react-start'
-import { redirect } from '@tanstack/react-router'
 import { registerTrainer, loginTrainer, logoutTrainer, getCurrentTrainer } from './auth-service'
 
 export const registerFn = createServerFn({ method: 'POST' })
@@ -21,8 +20,7 @@ export const logoutFn = createServerFn({ method: 'POST' }).handler(async () => {
   return { ok: true }
 })
 
-export const fetchCurrentTrainer = createServerFn({ method: 'GET' }).handler(async () => {
+export const fetchSessionFn = createServerFn({ method: 'GET' }).handler(async () => {
   const trainer = await getCurrentTrainer()
-  if (!trainer) throw redirect({ to: '/auth/login' })
-  return { trainer }
+  return { trainer: trainer ? { username: trainer.username } : null }
 })

@@ -1,6 +1,6 @@
 import { db } from '~/server/db'
 import { trainers, caughtPokemon, type CaughtPokemon, type PokemonSpecies } from '~/server/db/schema'
-import { eq } from 'drizzle-orm'
+import { count, eq } from 'drizzle-orm'
 
 export type CaughtPokemonWithSpecies = CaughtPokemon & { species: PokemonSpecies }
 
@@ -10,6 +10,14 @@ export async function findTrainerCollection(trainerId: number): Promise<CaughtPo
     with: { species: true },
     orderBy: (cp, { desc }) => [desc(cp.caughtAt)],
   })
+}
+
+export async function countTrainerCollection(trainerId: number): Promise<number> {
+  const [row] = await db
+    .select({ value: count() })
+    .from(caughtPokemon)
+    .where(eq(caughtPokemon.trainerId, trainerId))
+  return row.value
 }
 
 export async function findCaughtPokemonById(pokemonId: number): Promise<CaughtPokemon | undefined> {

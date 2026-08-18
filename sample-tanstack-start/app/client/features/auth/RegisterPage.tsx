@@ -17,6 +17,7 @@ export function RegisterPage() {
     const password = (form.elements.namedItem('password') as HTMLInputElement).value
     try {
       await registerFn({ data: { username, password } })
+      await router.invalidate()
       await router.navigate({ to: '/' })
     } catch (err: unknown) {
       if (err instanceof Error) setError(err.message)

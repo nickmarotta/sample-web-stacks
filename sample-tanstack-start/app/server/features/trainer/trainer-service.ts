@@ -1,7 +1,16 @@
-import { findCaughtPokemonById, findTrainerCollection, updateActivePokemon } from './trainer-repo'
+import {
+  countTrainerCollection,
+  findCaughtPokemonById,
+  findTrainerCollection,
+  updateActivePokemon,
+} from './trainer-repo'
 
 export async function getTrainerCollection(trainerId: number) {
   return findTrainerCollection(trainerId)
+}
+
+export async function getCollectionCount(trainerId: number) {
+  return countTrainerCollection(trainerId)
 }
 
 export async function setActivePokemon(trainerId: number, pokemonId: number) {

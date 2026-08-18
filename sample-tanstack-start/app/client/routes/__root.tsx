@@ -1,4 +1,5 @@
-import { createRootRoute, HeadContent, Link, Outlet, Scripts } from '@tanstack/react-router'
+import { createRootRoute, HeadContent, Link, Outlet, Scripts, useRouter } from '@tanstack/react-router'
+import { fetchSessionFn, logoutFn } from '~/server/features/auth/auth-controller'
 import { Text } from '~/client/ui'
 import '../styles.css'
 
@@ -10,10 +11,20 @@ export const Route = createRootRoute({
       { title: 'PokéStart' },
     ],
   }),
+  loader: () => fetchSessionFn(),
   component: RootComponent,
 })
 
 function RootComponent() {
+  const { trainer } = Route.useLoaderData()
+  const router = useRouter()
+
+  async function handleLogout() {
+    await logoutFn()
+    await router.invalidate()
+    await router.navigate({ to: '/auth/login' })
+  }
+
   return (
     <html lang="en">
       <head>
@@ -24,16 +35,24 @@ function RootComponent() {
           <Text variant="navLink" as={Link} to="/" className="text-lg text-red-600 hover:text-red-600">
             PokéStart
           </Text>
-          <Text variant="navLink" as={Link} to="/collection">
-            Collection
-          </Text>
-          <div className="ml-auto flex gap-3">
-            <Text variant="navLink" as={Link} to="/auth/login">
-              Login
-            </Text>
-            <Text variant="navLink" as={Link} to="/auth/register">
-              Register
-            </Text>
+          <div className="ml-auto flex gap-3 items-center">
+            {trainer ? (
+              <>
+                <Text variant="subheader" as="span">{trainer.username}</Text>
+                <Text variant="navLink" as="button" type="button" onClick={handleLogout}>
+                  Logout
+                </Text>
+              </>
+            ) : (
+              <>
+                <Text variant="navLink" as={Link} to="/auth/login">
+                  Login
+                </Text>
+                <Text variant="navLink" as={Link} to="/auth/register">
+                  Register
+                </Text>
+              </>
+            )}
           </div>
         </nav>
 
